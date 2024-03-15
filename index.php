@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Table Booking Form</title>
+</head>
+<body>
+    <h2>Table Booking Form</h2>
+    <form method="POST" action="process_booking.php" onsubmit="return validateForm()">
+        <label for="first_name">First Name:</label>
+        <input type="text" name="first_name" id="first_name" required><br><br>
+
+        <label for="last_name">Last Name:</label>
+        <input type="text" name="last_name" id="last_name" required><br><br>
+
+        <label for="phone_number">Phone Number:</label>
+        <input type="tel" name="phone_number" id="phone_number" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" required><br><br>
+
+        <label for="num_persons">Number of Persons:</label>
+        <input type="number" name="num_persons" id="num_persons" min="1" value="1" required><br><br>
+
+        <label for="dining_area">Dining Area:</label>
+        <select name="dining_area" id="dining_area" required>
+            <option value="indoor">Indoor</option>
+            <option value="open_air">Open Air</option>
+        </select><br><br>
+
+        <label for="booking_date">Booking Date:</label>
+        <input type="date" name="booking_date" id="booking_date" required><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        function validateForm() {
+            var firstName = document.getElementById("first_name").value;
+            var lastName = document.getElementById("last_name").value;
+            var phoneNumber = document.getElementById("phone_number").value;
+            var email = document.getElementById("email").value;
+            var numPersons = document.getElementById("num_persons").value;
+            var bookingDate = document.getElementById("booking_date").value;
+
+            // Validate First Name and Last Name
+            var nameRegex = /^[a-zA-Z]{2,}$/;
+            if (!nameRegex.test(firstName) || !nameRegex.test(lastName)) {
+                alert("First Name and Last Name should only contain letters and have a minimum length of 2 characters.");
+                return false;
+            }
+
+            // Validate Phone Number
+            var phoneRegex = /^\d{10,11}$/;
+            if (!phoneRegex.test(phoneNumber)) {
+                alert("Phone Number should only contain numbers and have a length between 10 and 11 digits.");
+                return false;
+            }
+
+            // Validate Email
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert("Please enter a valid email address.");
+                return false;
+            }
+
+            // Validate Number of Persons
+            if (numPersons < 1) {
+                alert("Number of Persons should be at least 1.");
+                return false;
+            }
+
+            // Validate Booking Date
+            var today = new Date().toISOString().split('T')[0];
+            if (bookingDate <= today) {
+                alert("Booking Date should be a future date.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>
