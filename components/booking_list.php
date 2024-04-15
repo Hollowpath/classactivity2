@@ -10,6 +10,8 @@
     // Redirect to login page if the user is not logged in
     if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
         echo "User must login to view this page.";
+        echo '<br>';
+        echo '<button onclick="window.location.href = \'../\';">Login</button>';
         exit; // Stop further execution of the script
     }
 

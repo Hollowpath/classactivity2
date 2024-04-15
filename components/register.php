@@ -26,6 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sql = "INSERT INTO auth (username, email, password) VALUES ('$username', '$hashedEmail', '$hashedPassword')";
     if ($conn->query($sql) === true) {
         echo 'User registered successfully.';
+        echo '<br>';
+        echo '<button onclick="window.location.href = \'../\';">Login</button>';
+        exit; // Stop further execution
     } else {
         echo 'Error: ' . $sql . '<br>' . $conn->error;
     }
