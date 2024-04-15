@@ -1,0 +1,39 @@
+<form action="register.php" method="post">
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username" required><br>
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" required><br>
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password" required><br>
+    <input type="submit" value="Register">
+</form>
+<script>
+    function validateForm() {
+        var username = document.getElementById("username").value;
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+
+        // Validate username
+        var usernameRegex = /^[a-zA-Z0-9]{4,11}$/;
+        if (!usernameRegex.test(username)) {
+            alert("Username must be between 4-11 characters long, no spaces, no symbols, only letters and numbers.");
+            return false;
+        }
+
+        // Validate email
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert("Please enter a valid email address.");
+            return false;
+        }
+
+        // Validate password
+        var passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
+        if (!passwordRegex.test(password)) {
+            alert("Password must be at least 8 characters long, and include at least 1 symbol and 1 number.");
+            return false;
+        }
+
+        return true;
+    }
+</script>
