@@ -35,7 +35,7 @@
 
     $sql = "SELECT * FROM reservation";
     $result = $conn->query($sql);
-
+    echo "<button onclick='window.location.href = \"create_booking.html\";'>Create Booking</button>";
     if ($result->num_rows > 0) {
         echo "<table>";
         echo "<tr><th>First Name</th><th>Last Name</th><th>Phone Number</th><th>Email</th><th>Number of Persons</th><th>Dining Area</th><th>Booking Date</th><th>Actions</th></tr>";
